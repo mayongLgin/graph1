@@ -1,0 +1,206 @@
+﻿<!DOCTYPE HTML>
+<html>
+  <body>
+<canvas id="lee" width="900" height="700" style="border:1px  solid #ff0000;"></canvas>
+<canvas id="lee02" width="900" height="700" style="border:1px solid #d3d3d3;"></canvas>
+<canvas id="line" width="900" height="700" style="border:2px solid #FF0000;"> </canvas>
+   
+  <script>
+ 
+      var c = document.getElementById('lee');
+      var ctx = c.getContext('2d');
+
+ function bargraph(x1,y1,x2,y2,color){
+ 
+       ctx.beginPath();
+       ctx.moveTo(x1,y1 );
+       ctx.lineTo(x2,y2 );
+       ctx.lineWidth=25;
+       ctx.strokeStyle=color;
+       ctx.stroke();
+	   
+ 
+ }
+ 
+ function xyline(x1,y1,x2,y2,color){
+ ctx.beginPath();
+       ctx.moveTo(x1,y1 );
+       ctx.lineTo(x2,y2 );
+       ctx.lineWidth=1;
+	   ctx.strokeStyle=color;
+       ctx.stroke(); 
+ }
+ 
+ function txt(text,x1,y1){
+ ctx.font = "13px Arial";
+ ctx.strokeText(text,x1,y1);
+ 
+ }
+ 
+  bargraph(800,300,800,320,"#FF0000");
+  bargraph(800,350,800,370,"#0000ff");
+ 
+  bargraph(c.width-650,c.height/1.5,c.width-650,260,"#FF0000");
+  bargraph(c.width-624,c.height/1.5,c.width-624,310,"#0000FF");
+  bargraph(c.width-650+80,c.height/1.5,c.width-650+80,270,"#FF0000");
+  bargraph(c.width-624+80,c.height/1.5,c.width-624+80,300,"#0000FF");
+  bargraph(c.width-650+80*2,c.height/1.5,c.width-650+80*2,250,"#FF0000");
+  bargraph(c.width-624+80*2,c.height/1.5,c.width-624+80*2,270,"#0000FF");
+  bargraph(c.width-650+80*3,c.height/1.5,c.width-650+80*3,280,"#FF0000");
+  bargraph(c.width-624+80*3,c.height/1.5,c.width-624+80*3,320,"#0000FF");
+  bargraph(c.width-650+80*4,c.height/1.5,c.width-650+80*4,250,"#FF0000");
+  bargraph(c.width-624+80*4,c.height/1.5,c.width-624+80*4,290,"#0000FF");
+ 
+  
+  xyline(c.width-700,250,700,250,"#DDDDDD");
+  xyline(c.width-700,250+50,700,250+50,"#DDDDDD");
+  xyline(c.width-700,250+50*2,700,250+50*2,"#DDDDDD");
+  xyline(c.width-700,250+50*3,700,250+50*3,"#DDDDDD");
+  
+  xyline(c.width-700,c.height/1.5,c.width/1.25,c.height/1.5,"#000000");
+  xyline(c.width-700,c.height/1.5,c.width-700,c.height-500,"#000000");
+  txt("กราฟรายรับ - รายจ่าน ในแต่ละปี",370,150);
+  txt("ราบยรับ",820,310);
+  txt("รายจ่าย",820,360);
+  txt("80,000",c.width-750,250);
+  txt("60,000",c.width-750,250+50);
+  txt("40,000",c.width-750,250+100);
+  txt("20,000",c.width-750,250+150);
+  txt("0",c.width-750,c.height/1.5);
+  txt("บาท",c.width-700,c.height-520);
+  txt("2007",c.width-650,500);
+  txt("2008",c.width-650+80,500);
+  txt("2009",c.width-650+80*2,500);
+  txt("2010",c.width-650+80*3,500);
+  txt("2011",c.width-650+80*4,500);
+  txt("ปี",c.width/1.25+20,c.height/1.5);
+  
+  
+  //...............................................................
+  
+	var c = document.getElementById('lee02');
+     var ctx = c.getContext('2d');
+var lastend = 0;
+var data = [100,46,42,20]; 
+var myTotal = 0; 
+var myColor = ['green', 'red','#FFFF00','blue'];
+
+for (var e = 0; e < data.length; e++) {
+  myTotal += data[e];
+}
+
+for (var i = 0; i < data.length; i++) {
+ 
+  ctx.fillStyle = myColor[i];
+  function txt(text,x1,y1){
+ ctx.font = "15px Arial";
+ ctx.strokeText(text,x1,y1);
+ 
+ }
+ var x1  = c.width-250;
+ txt("รถจักรยานยนต์",c.width*1/5,150);
+ txt("รถยน์ส่วนบุคคล",c.width*2/5,150);
+ txt("รถโดยสาร",c.width*3/5,150);
+ txt("จักรยาน",c.width*4/5,150);
+ txt("จำนวนรถบนท้องถนน",c.width*2/5+30,100);
+ 
+
+  ctx.beginPath();
+ ctx.moveTo(c.width/2,c.height/2);
+  ctx.arc(c.width/2,c.height/2, 120, lastend, lastend + (Math.PI * 2 * (data[i] / myTotal)), false);
+  ctx.lineTo(c.width/2,c.height/2);
+  ctx.fill();
+  lastend += Math.PI * 2 * (data[i] / myTotal);
+  
+
+
+ 
+
+}	
+
+	function l1 (x1,y1,x2,y2,j){
+		ctx.beginPath();
+         ctx.moveTo(x1,y1 );
+       ctx.lineTo(x2,y2 );
+      	
+        ctx.lineWidth=20;
+        ctx.strokeStyle = j;
+       ctx.stroke();}	
+var x1 = x2 =c.width-270; 
+
+for (var j = 0;j < data.length; j++) {
+	
+			
+				l1(c.width*1/5+100,150,c.width*1/5+120,150,myColor[0]);
+				l1(c.width*2/5+100,150,c.width*2/5+120,150,myColor[1]);
+				l1(c.width*3/5+100,150,c.width*3/5+120,150,myColor[2]);
+				l1(c.width*4/5+100,150,c.width*4/5+120,150,myColor[3]);	
+}
+//......................................................................................
+
+var c = document.getElementById('line');
+			var ctx = c.getContext('2d');
+			function txt(text,x1,y1){
+ 				ctx.font = "16px Angsana New";
+ 				ctx.strokeText(text,x1,y1);
+ 
+			 
+			}  
+			
+  			 function xyline(x1,y1,x2,y2,color){
+             ctx.beginPath();
+          ctx.moveTo(x1,y1 );
+         ctx.lineTo(x2,y2 );
+         ctx.lineWidth=1;
+	     ctx.strokeStyle=color;
+         ctx.stroke(); 
+         }
+		 	function gline(mx,my,lx,ly,wid,clr){ 
+								
+				ctx.beginPath();
+				ctx.moveTo(mx,my);
+				ctx.lineTo(lx,ly);
+				ctx.lineWidth = wid;
+				ctx.strokeStyle = clr;
+				ctx.stroke();
+			}
+		    
+			
+			
+			xyline(c.width-700,250,700,250,"#DDDDDD");
+			xyline(c.width-700,250+50,700,250+50,"#DDDDDD");
+			xyline(c.width-700,250+50*2,700,250+50*2,"#DDDDDD");
+			xyline(c.width-700,250+50*3,700,250+50*3,"#DDDDDD");
+			
+
+			
+			xyline(c.width-700,c.height/1.5,c.width/1.25,c.height/1.5,"#000000");
+			xyline(c.width-700,c.height/1.5,c.width-700,c.height-500,"#000000");
+			txt("กราฟแสดงจำนวนนักศึกษาที่เข้าเรียน",c.width/2.25,80);
+  			
+			txt("4,000",c.width-750,250);
+			txt("3,000",c.width-750,250+50);
+			txt("2,000",c.width-750,250+100);
+			txt("1,000",c.width-750,250+150);
+			txt("0",c.width-750,c.height/1.5);
+			txt("2007",c.width-650,500);
+			txt("2008",c.width-650+80,500);
+			txt("2009",c.width-650+80*2,500);
+			txt("2010",c.width-650+80*3,500);
+			txt("2011",c.width-650+80*4,500);
+			txt("ปี",c.width/1.25+20,c.height/1.5);
+			
+		    gline(c.width-700,250+50*3,300,250+50*3,5,'red');
+			gline(300,250+50*3,300+50,350,5,'red');
+			gline(300+50,350,300+150,300,5,'red');
+			gline(300+150,300,300+300,250,5,'red');
+			
+	</script>
+   
+
+
+	
+
+	
+  </body>
+</html>
